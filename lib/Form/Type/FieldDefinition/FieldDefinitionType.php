@@ -88,8 +88,8 @@ class FieldDefinitionType extends AbstractType
             ]);
 
             // Let fieldType mappers do their jobs to complete the form.
-            if ($this->fieldTypeMapperRegistry->hasMapper($fieldTypeIdentifier)) {
-                $mapper = $this->fieldTypeMapperRegistry->getMapper($fieldTypeIdentifier);
+            if ($this->fieldTypeMapperRegistry->hasDefinitionMapper($fieldTypeIdentifier)) {
+                $mapper = $this->fieldTypeMapperRegistry->getDefinitionMapper($fieldTypeIdentifier);
                 $mapper->mapFieldDefinitionForm($form, $data);
             }
         });
