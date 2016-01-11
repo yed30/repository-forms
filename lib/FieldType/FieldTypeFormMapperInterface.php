@@ -10,25 +10,13 @@
  */
 namespace EzSystems\RepositoryForms\FieldType;
 
-use EzSystems\RepositoryForms\Data\FieldDefinitionData;
-use Symfony\Component\Form\FormInterface;
-
 /**
  * Interface for FieldType form mappers.
  *
  * It maps a FieldType's specifics to editing Forms (e.g. FieldDefinition forms).
+ *
+ * @deprecated since 1.1, will be removed in 2.0. Use FieldTypeFormMapperInterface instead.
  */
-interface FieldTypeFormMapperInterface
+interface FieldTypeFormMapperInterface extends FieldDefinitionFormMapperInterface
 {
-    /**
-     * "Maps" FieldDefinition form to current FieldType.
-     * Gives the opportunity to enrich $fieldDefinitionForm with custom fields for:
-     * - validator configuration,
-     * - field settings
-     * - default value.
-     *
-     * @param FormInterface $fieldDefinitionForm Form for current FieldDefinition.
-     * @param FieldDefinitionData $data Underlying data for current FieldDefinition form.
-     */
-    public function mapFieldDefinitionForm(FormInterface $fieldDefinitionForm, FieldDefinitionData $data);
 }

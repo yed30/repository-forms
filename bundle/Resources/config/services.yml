@@ -134,11 +134,15 @@ services:
         class: %ezrepoforms.field_type.form_mapper.ezstring.class%
         tags:
             - { name: ez.fieldType.formMapper, fieldType: ezstring }
+        arguments:
+            - @ezpublish.api.service.field_type
 
     ezrepoforms.field_type.form_mapper.eztext:
         class: %ezrepoforms.field_type.form_mapper.eztext.class%
         tags:
             - { name: ez.fieldType.formMapper, fieldType: eztext }
+        arguments:
+            - @ezpublish.api.service.field_type
 
     ezrepoforms.field_type.form_mapper.eztime:
         class: %ezrepoforms.field_type.form_mapper.eztime.class%

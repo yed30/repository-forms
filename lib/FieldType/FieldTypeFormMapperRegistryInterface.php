@@ -42,5 +42,23 @@ interface FieldTypeFormMapperRegistryInterface
      * @param FieldTypeFormMapperInterface $mapper
      * @param string $fieldTypeIdentifier FieldType identifier the mapper is meant for.
      */
-    public function addMapper(FieldTypeFormMapperInterface $mapper, $fieldTypeIdentifier);
+    public function addMapper(/*FieldTypeFormMapperInterface*/ $mapper, $fieldTypeIdentifier);
+
+    public function hasValueMapper($fieldTypeIdentifier);
+
+    public function hasDefinitionMapper($fieldTypeIdentifier);
+
+    /**
+     * @param $fieldTypeIdentifier
+     *
+     * @return \EzSystems\RepositoryForms\FieldType\FieldValueFormMapperInterface
+     */
+    public function getValueMapper($fieldTypeIdentifier);
+
+    /**
+     * @param $fieldTypeIdentifier
+     *
+     * @return \EzSystems\RepositoryForms\FieldType\FieldDefinitionFormMapperInterface
+     */
+    public function getDefinitionMapper($fieldTypeIdentifier);
 }

@@ -31,7 +31,7 @@ class FieldTypeFormMapperRegistry implements FieldTypeFormMapperRegistryInterfac
         return $this->fieldTypeFormMappers;
     }
 
-    public function addMapper(FieldTypeFormMapperInterface $mapper, $fieldTypeIdentifier)
+    public function addMapper(/*FieldTypeFormMapperInterface*/ $mapper, $fieldTypeIdentifier)
     {
         $this->fieldTypeFormMappers[$fieldTypeIdentifier] = $mapper;
     }
@@ -68,9 +68,47 @@ class FieldTypeFormMapperRegistry implements FieldTypeFormMapperRegistryInterfac
      * @param string $fieldTypeIdentifier
      *
      * @return bool
+     *
+     * @deprecated hasMapper is deprecated since
      */
     public function hasMapper($fieldTypeIdentifier)
     {
         return isset($this->fieldTypeFormMappers[$fieldTypeIdentifier]);
+    }
+
+    public function hasValueMapper($fieldTypeIdentifier)
+    {
+        if (!isset($this->fieldTypeFormMappers[$fieldTypeIdentifier])) {
+            return false;
+        }
+
+        return ($this->fieldTypeFormMappers[$fieldTypeIdentifier] instanceof FieldValueFormMapperInterface);
+    }
+
+    public function hasDefinitionMapper($fieldTypeIdentifier)
+    {
+        if (!isset($this->fieldTypeFormMappers[$fieldTypeIdentifier])) {
+            return false;
+        }
+
+        return ($this->fieldTypeFormMappers[$fieldTypeIdentifier] instanceof FieldDefinitionFormMapperInterface);
+    }
+
+    public function getDefinitionMapper($fieldTypeIdentifier)
+    {
+        if (!$this->hasDefinitionMapper($fieldTypeIdentifier)) {
+            throw new InvalidArgumentException("No FieldDefinitionFormMapper found for '$fieldTypeIdentifier'");
+        }
+
+        return $this->fieldTypeFormMappers[$fieldTypeIdentifier];
+    }
+
+    public function getValueMapper($fieldTypeIdentifier)
+    {
+        if (!$this->hasValueMapper($fieldTypeIdentifier)) {
+            throw new InvalidArgumentException("No FieldValueFormMapper found for '$fieldTypeIdentifier'");
+        }
+
+        return $this->fieldTypeFormMappers[$fieldTypeIdentifier];
     }
 }
